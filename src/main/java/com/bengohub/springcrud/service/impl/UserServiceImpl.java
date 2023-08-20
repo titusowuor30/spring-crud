@@ -1,4 +1,5 @@
 package com.bengohub.springcrud.service.impl;
+import com.bengohub.springcrud.dto.UserDto;
 import com.bengohub.springcrud.entity.User;
 import com.bengohub.springcrud.repository.UserRepository;
 import com.bengohub.springcrud.service.UserService;
@@ -66,6 +67,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findUserByMinAgeAddress(Integer minage, String address) {
         return userRepository.findUsersByAgeAndAddress(minage,address);
+    }
+
+    /**
+     * @param id
+     * @param userDto
+     */
+    @Override
+    public void updatName(Integer id, UserDto userDto) {
+        //check if user exists or not
+        User user=userRepository
+                .findById(id)
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Invalid User id "+id));
+        //update user if exits
+        user.setName(userDto.getName());
+        userRepository.save(user);
     }
 
 }

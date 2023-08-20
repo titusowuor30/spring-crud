@@ -1,5 +1,6 @@
 package com.bengohub.springcrud.service;
 
+import com.bengohub.springcrud.dto.UserDto;
 import com.bengohub.springcrud.entity.User;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface UserService {
     List<User> findByFilters(String name, Integer age, String address, Boolean deleted);
 
     List<User> findUserByMinAgeAddress(Integer minage, String address);
+
+    void updatName(Integer id, UserDto userDto);
 }

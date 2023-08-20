@@ -1,5 +1,6 @@
 package com.bengohub.springcrud.controller;
 
+import com.bengohub.springcrud.dto.UserDto;
 import com.bengohub.springcrud.entity.User;
 import com.bengohub.springcrud.service.UserService;
 import java.util.List;
@@ -52,6 +53,11 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    @PatchMapping("/update-name/{id}")
+    public ResponseEntity<Void> updateUser(@PathVariable Integer id, @RequestBody UserDto userDto){
+        userService.updatName(id,userDto);
+        return ResponseEntity.noContent().build();
+    }
     @DeleteMapping("/del/{id}")
     public String deleteUser(@PathVariable Integer id){
         userService.delUser(id);
